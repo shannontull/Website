@@ -1,0 +1,8 @@
+services:
+  fastapi:
+    public: true
+    image: shannontull/website:latest
+    build: .
+    replicas: 1
+    ports:
+      - 8080:8080
