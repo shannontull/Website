@@ -4,5 +4,5 @@ app = FastAPI()
 
 @app.get("/")
 def welcome():
-    x={"message":"Happy Summer Soltice"}
+    x={"message":"Happy 4th of July"}
     return x
