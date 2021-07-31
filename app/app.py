@@ -28,4 +28,4 @@ def get_db():
 async def welcome(request: Request, db: Session=Depends(get_db)):
     x = crud.get_salary(db)
     a=5
-    return templates.TemplateResponse("chart.html", {"request":request})
+    return templates.TemplateResponse("chart.html", {"request":request, "a":a})
