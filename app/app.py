@@ -27,5 +27,7 @@ def get_db():
 @app.get("/")
 async def welcome(request: Request, db: Session=Depends(get_db)):
     x = crud.get_salary(db)
-    a=5
-    return templates.TemplateResponse("chart.html", {"request":request, "a":a})
+    df=pd.DataFrame.from_records(x,columns=['Player','Fieldposition','Team','Salary'])
+    df10=df.head(10)
+    fig = px.bar(df10 , x='Player', y='Salary', title='Top 10 Paid NFL Players')
+    return templates.TemplateResponse("chart.html", {"request":request, "top10":top10})
