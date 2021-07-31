@@ -27,5 +27,5 @@ def get_db():
 @app.get("/")
 async def welcome(request: Request, db: Session=Depends(get_db)):
     x = crud.get_salary(db)
+    a=5
     return templates.TemplateResponse("chart.html", {"request":request})
-    
