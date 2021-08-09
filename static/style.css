@@ -1,0 +1,10 @@
+.container{
+  display: grid;
+  grid-template-colums: 1fr 266px 266px 266px 1fr;
+  grid-template-rows: repeat(2, 200px);
+  gap: 5px;
+}
+.item{
+  background: lightgray;
+  text-align: center;
+}
