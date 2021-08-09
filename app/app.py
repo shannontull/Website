@@ -32,10 +32,8 @@ async def welcome(request: Request, db: Session=Depends(get_db)):
     px.defaults.width=266
     px.defaults.height=200
 
-    fig = px.bar(df.head(10) ,x='Player', y='Salary',title='Top 10 Paid NFL Players')
-    fig.update_layout(yaxis=dict(tickfont=dict(size=5)),
-    xaxis=dict(size=5),
-    margin=dict(l=0, r=0,t=0,b=0))
+    fig = px.bar(df.head(10) ,x='Player', y='Salary')
+    fig.update_layout(yaxis=dict(tickfont= dict(size=5)),xaxis=dict(tickfont=dict(size=5)),font=dict(size=5),margin=dict(l=0, r=0,t=0,b=0))
     top10=fig.to_html(full_html=False, include_plotlyjs='cdn')
 
     dfteam=df.groupby('Team')['Salary'].sum()
@@ -43,8 +41,9 @@ async def welcome(request: Request, db: Session=Depends(get_db)):
     dfteam=dfteam.sort_values('Salary', ascending=False).head(10)
 
     fig10=px.bar(dfteam ,x='Team', y='Salary')
-    fig10.update_layout(yaxis=dict(tickfont=dict(size=5)),
-    xaxis=dict(size=5)
+    fig10.update_layout(yaxis = dict(tickfont = dict(size=5)),
+    xaxis=dict( tickfont = dict(size=5)),
+    font=dict(size=5)
     margin=dict(l=0, r=0, t=0, b=0))
     team10=fig10.to_html(full_html=False, include_plotlyjs='cdn')
 
