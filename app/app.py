@@ -24,8 +24,6 @@ def get_db():
         yield db
     finally:
         db.close()
-
-
 @app.get("/")
 async def welcome(request: Request, db: Session=Depends(get_db)):
     x=crud.get_salary(db)
@@ -75,6 +73,7 @@ async def welcome(request: Request, db: Session=Depends(get_db)):
 
     pos10 = dfteam.groupby('Fieldposition')['Salary'].mean().sort_values(ascending=False).head(10)
     pos10 = pos10.reset_index()
+
     figpos2 = px.box(dfteam.loc[dfteam['Fieldposition'].isin(pos10.Fieldposition)], x='Fieldposition', y='Salary', color_discrete_sequence=['red'])
     figpos2.update_layout(yaxis = dict(tickfont = dict(size=5)),
         xaxis = dict(tickfont = dict(size=5)),
